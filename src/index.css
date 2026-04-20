@@ -1,15 +1,30 @@
+/* =========================================================
+   CHINOIKE — DESIGN SYSTEM
+   DA : Dark Fantasy, Washi, Sumi-e, Sang Poisseux
+   Zéro technologie. Matières organiques uniquement.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cinzel+Decorative:wght@400;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── TOKENS ─────────────────────────────────────────────── */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --ink:        #0a0000;
+  --parchment:  #e8d5b0;
+  --parchment-dark: #c4a882;
+  --blood:      #8b0000;
+  --blood-bright: #cc0000;
+  --blood-dark: #3d0000;
+  --mist:       rgba(200, 190, 180, 0.06);
+  --ink-stain:  rgba(10, 0, 0, 0.85);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* TYPOGRAPHIE */
+  --font-noble:  'Cinzel', 'Georgia', serif;
+  --font-body:   'Crimson Pro', 'Georgia', serif;
+  --font-kanji:  'Noto Serif JP', serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,14 +32,319 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+/* ─── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--ink);
+  color: var(--parchment);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
+
+  /* Grain de parchemin synthétique */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
 }
 
 #root {
   width: 100%;
+  min-height: 100vh;
 }
+
+/* ─── CURSEUR ─────────────────────────────────────────────── */
+* { cursor: none !important; }
+
+/* ─── POLICES UTILITAIRES ─────────────────────────────────── */
+.font-noble    { font-family: var(--font-noble); }
+.font-body     { font-family: var(--font-body); }
+.font-kanji    { font-family: var(--font-kanji); }
+
+/* ─── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--blood-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--blood); }
+
+/* ─── SÉLECTION DE TEXTE ──────────────────────────────────── */
+::selection {
+  background: var(--blood);
+  color: var(--parchment);
+}
+
+/* =========================================================
+   ANIMATIONS — STUTTER (Bégaiement visuel)
+   ========================================================= */
+
+/* Tremblement léger — calque fantôme */
+@keyframes stutter-shake {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  15%  { transform: translate(-2px, 1px) rotate(-0.3deg); }
+  30%  { transform: translate(2px, -1px) rotate(0.3deg); }
+  45%  { transform: translate(-1px, 2px) rotate(-0.1deg); }
+  60%  { transform: translate(3px, 0px) rotate(0.4deg); }
+  75%  { transform: translate(-2px, -1px) rotate(-0.2deg); }
+  85%  { transform: translate(1px, 1px) rotate(0.1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Tremblement violent — crises */
+@keyframes stutter-violent {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-6px, 3px); }
+  20%  { transform: translate(6px, -3px); }
+  30%  { transform: translate(-4px, 5px); }
+  40%  { transform: translate(5px, -4px); }
+  50%  { transform: translate(-3px, 2px); }
+  60%  { transform: translate(4px, -2px); }
+  70%  { transform: translate(-2px, 4px); }
+  80%  { transform: translate(3px, -3px); }
+  90%  { transform: translate(-1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Opacité qui clignote — conscience fragmentée */
+@keyframes stutter-blink {
+  0%, 100% { opacity: 1; }
+  20%       { opacity: 0.6; }
+  21%       { opacity: 1; }
+  22%       { opacity: 0.4; }
+  23%       { opacity: 1; }
+  60%       { opacity: 0.8; }
+  61%       { opacity: 1; }
+  80%       { opacity: 0.7; }
+  81%       { opacity: 1; }
+}
+
+/* Décalage horizontal du calque fantôme */
+@keyframes ghost-drift {
+  0%   { transform: translate(0, 0); opacity: 0.25; }
+  25%  { transform: translate(4px, -2px); opacity: 0.15; }
+  50%  { transform: translate(-3px, 1px); opacity: 0.3; }
+  75%  { transform: translate(2px, 3px); opacity: 0.1; }
+  100% { transform: translate(0, 0); opacity: 0.25; }
+}
+
+.animate-stutter       { animation: stutter-shake 2.3s infinite ease-in-out; }
+.animate-stutter-fast  { animation: stutter-violent 0.8s infinite; }
+.animate-stutter-blink { animation: stutter-blink 3.1s infinite; }
+.animate-ghost-drift   { animation: ghost-drift 4s infinite ease-in-out; }
+
+/* =========================================================
+   ANIMATIONS — BRUME
+   ========================================================= */
+
+@keyframes mist-float {
+  0%   { transform: translateX(-5%) scaleX(1.1); opacity: 0.04; }
+  50%  { transform: translateX(5%) scaleX(0.95); opacity: 0.08; }
+  100% { transform: translateX(-5%) scaleX(1.1); opacity: 0.04; }
+}
+
+@keyframes mist-rise {
+  0%   { transform: translateY(0) scaleY(1); opacity: 0; }
+  30%  { opacity: 0.12; }
+  70%  { opacity: 0.08; }
+  100% { transform: translateY(-40px) scaleY(1.1); opacity: 0; }
+}
+
+.animate-mist        { animation: mist-float 12s infinite ease-in-out; }
+.animate-mist-slow   { animation: mist-float 20s infinite ease-in-out reverse; }
+.animate-mist-rise   { animation: mist-rise 8s infinite ease-out; }
+
+/* =========================================================
+   ANIMATIONS — SANG
+   ========================================================= */
+
+/* Goutte qui tombe */
+@keyframes blood-drip {
+  0%   { transform: translateY(-100%) scaleX(1); opacity: 0; }
+  10%  { opacity: 1; }
+  70%  { transform: translateY(0%) scaleX(1); opacity: 1; }
+  85%  { transform: translateY(2%) scaleX(1.2); opacity: 1; }
+  100% { transform: translateY(0%) scaleX(1.1); opacity: 0.9; }
+}
+
+/* Flaque qui s'étale */
+@keyframes blood-spread {
+  0%   { transform: scale(0) rotate(-5deg); opacity: 0; }
+  40%  { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
+  60%  { transform: scale(0.95) rotate(-1deg); opacity: 0.9; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Pulsation organique */
+@keyframes blood-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+/* Metaball blob drift */
+@keyframes blob-drift-1 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(40px, -30px) scale(1.1); }
+  66%  { transform: translate(-20px, 40px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes blob-drift-2 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(-50px, 20px) scale(0.85); }
+  66%  { transform: translate(30px, -40px) scale(1.15); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes blob-drift-3 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  25%  { transform: translate(20px, 50px) scale(1.05); }
+  50%  { transform: translate(-40px, 10px) scale(0.92); }
+  75%  { transform: translate(10px, -30px) scale(1.08); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes blob-drift-4 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  40%  { transform: translate(-30px, -40px) scale(1.2); }
+  80%  { transform: translate(50px, 20px) scale(0.88); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes blob-drift-5 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  30%  { transform: translate(60px, 30px) scale(0.95); }
+  70%  { transform: translate(-10px, -50px) scale(1.1); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+/* =========================================================
+   ANIMATIONS — INTRO
+   ========================================================= */
+
+@keyframes intro-drop {
+  0%   { transform: translateY(-120vh) scaleY(1.3) scaleX(0.7); opacity: 0; }
+  60%  { transform: translateY(0vh) scaleY(1.2) scaleX(0.8); opacity: 1; }
+  75%  { transform: translateY(0vh) scaleY(0.7) scaleX(1.4); }
+  85%  { transform: translateY(0vh) scaleY(1.1) scaleX(0.9); }
+  100% { transform: translateY(0vh) scaleY(1) scaleX(1); opacity: 1; }
+}
+
+@keyframes intro-spread {
+  0%   { transform: scale(0) rotate(-8deg); opacity: 0; filter: blur(10px); }
+  50%  { transform: scale(1.15) rotate(2deg); opacity: 0.9; filter: blur(2px); }
+  70%  { transform: scale(0.98) rotate(-1deg); filter: blur(0px); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0px); }
+}
+
+@keyframes intro-text-appear {
+  0%   { opacity: 0; transform: translateY(30px) rotate(-2deg); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0) rotate(0deg); filter: blur(0px); }
+}
+
+@keyframes intro-fade-out {
+  0%   { opacity: 1; filter: blur(0px); }
+  70%  { opacity: 1; filter: blur(0px); }
+  100% { opacity: 0; filter: blur(20px); pointer-events: none; }
+}
+
+@keyframes thought-flash {
+  0%   { opacity: 0; transform: translateX(-10px) rotate(-1deg); }
+  15%  { opacity: 1; transform: translateX(0) rotate(0deg); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(5px); }
+}
+
+/* =========================================================
+   ANIMATIONS — PARANOIA (Révélation au hover)
+   ========================================================= */
+
+@keyframes reveal-bleed {
+  0%   { opacity: 0; transform: scaleX(0) skewX(-5deg); }
+  100% { opacity: 1; transform: scaleX(1) skewX(0deg); }
+}
+
+@keyframes ink-strike {
+  0%   { width: 0%; opacity: 0; }
+  50%  { opacity: 0.8; }
+  100% { width: 100%; opacity: 0.6; }
+}
+
+/* =========================================================
+   EFFETS TEXTE
+   ========================================================= */
+
+/* Stroke parchment */
+.text-stroke-parchment {
+  -webkit-text-stroke: 1.5px var(--parchment);
+  color: transparent;
+}
+
+.text-stroke-blood {
+  -webkit-text-stroke: 2px var(--blood);
+  color: transparent;
+}
+
+/* Tache d'encre drop-shadow */
+.ink-shadow {
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+/* Texture parchemin sur les blocs */
+.parchment-block {
+  background:
+    linear-gradient(135deg, rgba(200, 170, 100, 0.06) 0%, transparent 60%),
+    linear-gradient(225deg, rgba(139, 0, 0, 0.04) 0%, transparent 60%);
+  border: 1px solid rgba(200, 170, 100, 0.15);
+  position: relative;
+}
+
+.parchment-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Encre qui bave sur un titre */
+.ink-bleed {
+  position: relative;
+}
+
+.ink-bleed::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--blood-dark);
+  filter: blur(3px);
+  z-index: -1;
+  transform: translate(3px, 5px);
+  animation: ghost-drift 5s infinite ease-in-out;
+}
+
+/* =========================================================
+   FILTRE SVG GOOEY — Défini en global
+   (Le SVG est injecté dans le DOM par BloodMetaballs)
+   ========================================================= */
+
+.gooey-filter {
+  filter: url(#gooey-blood);
+}
+
+/* ─── UTILITAIRES DIVERS ──────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Overflow voulu (voix forte = texte qui déborde) */
+.overflow-visible-x { overflow-x: visible !important; }
+
+/* Rotation légère asymétrique */
+.rotate-chaos-1 { transform: rotate(-1.5deg); }
+.rotate-chaos-2 { transform: rotate(0.8deg); }
+.rotate-chaos-3 { transform: rotate(-0.5deg); }

@@ -1,68 +1,251 @@
 import React from 'react';
-import { Activity, ShieldAlert, Zap } from 'lucide-react';
-import { useScrambleText } from '../hooks/useScrambleText';
-import { DOSSIER_DATA } from '../data';
-import { Censored } from '../components/ui/Censored';
+import { DOSSIER_DATA }    from '../data';
+import { StutterText }     from '../components/ui/StutterText';
+import { ParanoiaReveal }  from '../components/ui/ParanoiaReveal';
 
-export const PageGeneral = ({ trigger }) => {
-  const title = useScrambleText("MATIÈRE PREMIÈRE", trigger);
-  
-  return (
-    <div className="space-y-24 relative z-10">
-      <div className="flex flex-col border-b border-white/10 pb-16 relative group">
-        <div className="absolute left-0 bottom-0 w-0 h-px bg-[#ff0000] transition-all duration-1000 group-hover:w-full"></div>
-        <h2 className="text-sm md:text-lg font-mono text-[#8b0000] tracking-[0.5em] mb-4 uppercase">{title}</h2>
-        <h1 className="text-7xl md:text-[8rem] leading-none font-bleach text-white tracking-tighter uppercase relative">
-          <span className="relative z-10">{DOSSIER_DATA.name}</span>
-          <span className="absolute -left-2 top-0 text-transparent text-stroke-red opacity-50 select-none pointer-events-none translate-x-2 translate-y-2">{DOSSIER_DATA.name}</span>
-        </h1>
-        <div className="mt-8 flex items-center gap-6">
-           <span className="text-white text-xl md:text-3xl font-serif italic border border-white/20 px-6 py-2 rounded-full">{DOSSIER_DATA.clan}</span>
-           <span className="text-[#ff0000] text-3xl font-japanese opacity-60 animate-pulse">{DOSSIER_DATA.kanji}</span>
+/** ─── PageGeneral — "Matière Première" ─────────────────────────
+ *  Présentation brute du sujet : identité, clan, Dojutsu, menace.
+ *  Mise en page asymétrique — pas de grille symétrique.
+ */
+export const PageGeneral = () => (
+  <div style={{ position: 'relative' }}>
+
+    {/* ── TITRE GÉANT — voix écrasante ─────────────────────── */}
+    <div
+      style={{
+        position:    'relative',
+        marginBottom: 'clamp(2rem, 6vw, 5rem)',
+        overflow:    'visible',
+      }}
+    >
+      {/* Kanji de fond — texture */}
+      <div
+        className="font-kanji font-black select-none pointer-events-none"
+        style={{
+          position:   'absolute',
+          top:        '-0.3em',
+          right:      '-0.15em',
+          fontSize:   'clamp(10rem, 30vw, 40rem)',
+          color:      'rgba(139,0,0,0.04)',
+          lineHeight:  1,
+          zIndex:      0,
+          userSelect: 'none',
+        }}
+        aria-hidden="true"
+      >
+        血
+      </div>
+
+      {/* Sous-titre */}
+      <p
+        className="font-noble"
+        style={{
+          fontSize:      'clamp(0.6rem, 0.9vw, 0.75rem)',
+          letterSpacing: '0.5em',
+          color:         'rgba(139,0,0,0.7)',
+          textTransform: 'uppercase',
+          marginBottom:  '0.8rem',
+          position:      'relative',
+          zIndex:         1,
+        }}
+      >
+        — Dossier Noir / Sujet {DOSSIER_DATA.id}
+      </p>
+
+      {/* Nom ISAMU — déborde intentionnellement */}
+      <div style={{ position: 'relative', zIndex: 1, overflow: 'visible' }}>
+        <StutterText
+          as="h1"
+          intensity="med"
+          className="font-noble font-black"
+          style={{
+            fontSize:         'clamp(5rem, 18vw, 20rem)',
+            lineHeight:       0.85,
+            color:            'transparent',
+            WebkitTextStroke: '1.5px rgba(232,213,176,0.6)',
+            letterSpacing:    '-0.03em',
+            overflow:         'visible',
+            whiteSpace:       'nowrap',
+            display:          'block',
+          }}
+        >
+          ISAMU
+        </StutterText>
+      </div>
+
+      {/* Clan — second niveau */}
+      <div
+        style={{
+          display:      'flex',
+          alignItems:   'baseline',
+          gap:          'clamp(1rem, 2vw, 2rem)',
+          marginTop:    '0.5rem',
+          position:     'relative',
+          zIndex:       1,
+        }}
+      >
+        <span
+          className="font-noble font-black"
+          style={{
+            fontSize:   'clamp(1.4rem, 4vw, 3.5rem)',
+            color:      '#8b0000',
+            letterSpacing: '0.1em',
+          }}
+        >
+          CHINOIKE
+        </span>
+        <span
+          className="font-kanji font-black"
+          style={{
+            fontSize:   'clamp(1.8rem, 5vw, 4rem)',
+            color:      'rgba(139,0,0,0.4)',
+            lineHeight:  1,
+          }}
+        >
+          {DOSSIER_DATA.kanji}
+        </span>
+      </div>
+    </div>
+
+    {/* ── CORPS — Asymétrique ───────────────────────────────── */}
+    <div
+      style={{
+        display:      'grid',
+        gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.4fr)',
+        gap:          'clamp(2rem, 4vw, 4rem)',
+        alignItems:   'start',
+      }}
+    >
+      {/* Colonne gauche — données froides du dossier */}
+      <div
+        style={{
+          transform: 'rotate(-0.5deg)',
+          marginTop: '3rem',
+        }}
+      >
+        <div
+          className="parchment-block"
+          style={{ padding: 'clamp(1.2rem, 2.5vw, 2rem)' }}
+        >
+          <p
+            className="font-noble"
+            style={{
+              fontSize:      '0.6rem',
+              letterSpacing: '0.4em',
+              color:         'rgba(139,0,0,0.6)',
+              textTransform: 'uppercase',
+              marginBottom:  '1.5rem',
+            }}
+          >
+            ⬛ Données Biométriques
+          </p>
+
+          {[
+            { label: 'Village',          value: 'Kirigakure no Sato' },
+            { label: 'Rang',             value: 'Anomalie classifiée' },
+            { label: 'Groupe Sanguin',   value: DOSSIER_DATA.bloodType },
+            { label: 'Localisation',     value: DOSSIER_DATA.location },
+            { label: 'Niveau de Menace', value: DOSSIER_DATA.threatLevel, danger: true },
+          ].map(({ label, value, danger }) => (
+            <div
+              key={label}
+              style={{
+                borderBottom: '1px solid rgba(232,213,176,0.06)',
+                paddingBottom: '0.8rem',
+                marginBottom:  '0.8rem',
+              }}
+            >
+              <div
+                className="font-noble"
+                style={{
+                  fontSize:      '0.55rem',
+                  letterSpacing: '0.35em',
+                  color:         'rgba(232,213,176,0.35)',
+                  textTransform: 'uppercase',
+                  marginBottom:  '0.2rem',
+                }}
+              >
+                {label}
+              </div>
+              <div
+                className="font-body"
+                style={{
+                  fontSize:   'clamp(0.85rem, 1.3vw, 1rem)',
+                  color:      danger ? '#8b0000' : 'rgba(232,213,176,0.8)',
+                  fontWeight: danger ? 600 : 400,
+                  fontStyle:  danger ? 'normal' : 'italic',
+                }}
+              >
+                {value}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5 space-y-12">
-          <div className="relative group p-8 bg-black/40 backdrop-blur-md border border-white/5 hover:border-[#ff0000]/50 transition-colors duration-500 cursor-magnetic">
-            <h3 className="font-mono text-xs tracking-widest text-[#8b0000] mb-6 uppercase flex items-center gap-4">
-              <Activity className="w-4 h-4" /> Analyse Souche
-            </h3>
-            <ul className="space-y-6 font-serif text-lg text-white/80">
-              <li className="flex flex-col gap-1 border-b border-white/5 pb-4">
-                <span className="text-white/40 uppercase text-xs font-mono tracking-wider">Localisation</span>
-                <span className="text-white">{DOSSIER_DATA.location}</span>
-              </li>
-              <li className="flex flex-col gap-1 border-b border-white/5 pb-4">
-                <span className="text-white/40 uppercase text-xs font-mono tracking-wider">Statut Biologique</span>
-                <Censored>{DOSSIER_DATA.status}</Censored>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="p-8 border border-[#ff0000]/30 bg-[radial-gradient(ellipse_at_top_right,rgba(255,0,0,0.15),transparent)] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[#ff0000] transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 opacity-10"></div>
-            <span className="text-[#ff0000] uppercase text-xs font-mono tracking-widest block mb-2">Groupe Sanguin Identifié</span>
-            <span className="text-4xl md:text-5xl font-bleach text-white drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">{DOSSIER_DATA.bloodType}</span>
-          </div>
-        </div>
+      {/* Colonne droite — texte narratif avec paranoïa */}
+      <div>
+        {/* Titre de section — encre qui bave */}
+        <h2
+          className="font-noble font-black ink-bleed"
+          data-text="PROTOCOLE ZÉRO"
+          style={{
+            fontSize:      'clamp(1.5rem, 3vw, 2.5rem)',
+            color:         'rgba(232,213,176,0.9)',
+            letterSpacing: '0.08em',
+            marginBottom:  'clamp(1rem, 2.5vw, 2rem)',
+            borderLeft:    '3px solid #3d0000',
+            paddingLeft:   '1rem',
+          }}
+        >
+          PROTOCOLE ZÉRO
+        </h2>
 
-        <div className="lg:col-span-7 relative p-10 border-l-4 border-[#ff0000] bg-black/60 backdrop-blur-xl shadow-2xl overflow-hidden group">
-          <Zap className="absolute -top-10 -right-10 w-64 h-64 text-[#ff0000] opacity-[0.03] group-hover:opacity-10 transition-opacity duration-1000 rotate-12 pointer-events-none" />
-          
-          <h3 className="font-bleach text-4xl text-[#ff0000] tracking-widest mb-8 flex items-center gap-4 relative z-10">
-            <ShieldAlert className="w-8 h-8" /> Protocole Zéro
-          </h3>
-          <div className="text-white/80 font-serif text-xl md:text-2xl leading-relaxed space-y-6 relative z-10">
-            <p className="bg-[#1a0000]/50 p-6 border border-[#ff0000]/20 backdrop-blur-md text-white">
-              Le sujet souffre d'hallucinations hématiques sévères. <strong className="text-[#ff0000]">Il entend le sang circuler dans les corps environnants.</strong>
-            </p>
-            <p className="pl-6 border-l-2 border-white/20 text-white/50">
-              <Censored>Ne jamais lui tourner le dos.</Censored> S'il fixe vos veines ou si la température de la pièce chute soudainement, <span className="text-[#ff0000] underline decoration-[#8b0000] underline-offset-4 font-bold">neutralisation immédiate autorisée</span>.
-            </p>
-          </div>
+        <div
+          className="font-body"
+          style={{
+            fontSize:   'clamp(1rem, 1.6vw, 1.2rem)',
+            lineHeight:  1.8,
+            color:      'rgba(232,213,176,0.65)',
+            fontStyle:  'italic',
+          }}
+        >
+          <p style={{ marginBottom: '1.5rem' }}>
+            Le sujet souffre d'hallucinations hématiques sévères.{' '}
+            <ParanoiaReveal
+              surface="Il entend les corps des gens autour de lui."
+              hidden="IL LIT NOS INTENTIONS DANS NOS VEINES."
+              size="md"
+            />
+          </p>
+
+          <p
+            style={{
+              marginBottom:  '1.5rem',
+              paddingLeft:   '1.5rem',
+              borderLeft:    '1px solid rgba(139,0,0,0.3)',
+            }}
+          >
+            <ParanoiaReveal
+              surface="Ne jamais lui tourner le dos."
+              hidden="IL CALCULE DÉJÀ L'ANGLE D'INCISION."
+              size="sm"
+            />
+            {' '}S'il fixe vos veines ou si la température de la pièce chute soudainement,{' '}
+            <strong style={{ color: '#8b0000', fontStyle: 'normal' }}>
+              neutralisation immédiate autorisée.
+            </strong>
+          </p>
+
+          <p style={{ color: 'rgba(232,213,176,0.35)', fontSize: '0.9em' }}>
+            <ParanoiaReveal
+              surface="Profil psychologique : instable chronique."
+              hidden="IL EST CONSCIENT. IL FAIT SEMBLANT."
+              size="sm"
+            />
+          </p>
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);

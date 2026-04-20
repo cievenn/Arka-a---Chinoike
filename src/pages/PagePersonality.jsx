@@ -1,49 +1,288 @@
 import React from 'react';
-import { useScrambleText } from '../hooks/useScrambleText';
-import { Censored } from '../components/ui/Censored';
+import { StutterText }    from '../components/ui/StutterText';
+import { ParanoiaReveal } from '../components/ui/ParanoiaReveal';
 
-export const PagePersonality = ({ trigger }) => {
-  const title = useScrambleText("FRACTURE MENTALE", trigger);
+/** ─── PagePersonality — "Fracture Mentale" ─────────────────────
+ *  Schizophrénie, démence, voix écrasante.
+ *  Mise en page cassée — pas de symétrie. 
+ *  Texte géant qui interrompt le flux, révélations au hover.
+ */
+export const PagePersonality = () => (
+  <div style={{ position: 'relative', overflow: 'visible' }}>
 
-  return (
-    <div className="space-y-24 relative z-10">
-      <div className="border-b border-[#ff0000]/20 pb-12 relative">
-         <h1 className="text-6xl md:text-[7rem] leading-none font-bleach text-white tracking-tighter uppercase glitch-text" data-text={title}>
-            {title}
-         </h1>
-      </div>
+    {/* ── TITRE — FRACTURE MENTALE ───────────────────────────── */}
+    <div style={{ marginBottom: 'clamp(3rem, 7vw, 6rem)', overflow: 'visible' }}>
+      <p
+        className="font-noble"
+        style={{
+          fontSize:      '0.6rem',
+          letterSpacing: '0.5em',
+          color:         'rgba(139,0,0,0.5)',
+          textTransform: 'uppercase',
+          marginBottom:  '0.5rem',
+        }}
+      >
+        — Rapport Psychologique / Confidentiel
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-0 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-[#ff0000] before:via-white/10 before:to-transparent md:before:block before:hidden">
-        
-        <div className="space-y-8 md:pr-12 group">
-          <h3 className="font-bleach text-4xl md:text-5xl text-white mb-6 flex items-center gap-4">
-            <span className="text-[#ff0000]">01.</span> Le Murmure
-          </h3>
-          <p className="text-white/70 font-serif text-xl leading-relaxed text-justify">
-            La réalité est corrompue. Les mots n'ont plus de sens, seule la <strong className="text-[#ff0000] font-bleach tracking-widest text-2xl">vérité du sang</strong> compte. Il ne voit pas des visages humains, il voit des réseaux artériels palpitants, des cibles organiques. Chaque battement de cœur adverse est une information, <Censored>chaque goutte versée est une phrase complétée.</Censored>
-          </p>
+      <StutterText
+        as="h1"
+        intensity="med"
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(3.5rem, 12vw, 13rem)',
+          lineHeight:    0.88,
+          color:         '#e8d5b0',
+          letterSpacing: '-0.02em',
+          overflow:      'visible',
+          display:       'block',
+        }}
+      >
+        FRACTURE
+      </StutterText>
+      <StutterText
+        as="div"
+        intensity="high"
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(3.5rem, 12vw, 13rem)',
+          lineHeight:    0.88,
+          color:         '#8b0000',
+          letterSpacing: '-0.02em',
+          overflow:      'visible',
+          display:       'block',
+          marginLeft:    'clamp(2rem, 6vw, 8rem)',
+          transform:     'rotate(0.8deg)',
+        }}
+      >
+        MENTALE
+      </StutterText>
+    </div>
+
+    {/* ── BLOC 01 — Le Murmure ──────────────────────────────── */}
+    <div
+      style={{
+        maxWidth:     '60ch',
+        marginBottom: 'clamp(4rem, 8vw, 7rem)',
+        transform:    'rotate(-0.4deg)',
+      }}
+    >
+      <h2
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(1rem, 2vw, 1.5rem)',
+          color:         'rgba(139,0,0,0.8)',
+          letterSpacing: '0.15em',
+          marginBottom:  '1rem',
+          display:       'flex',
+          alignItems:    'center',
+          gap:           '0.8rem',
+        }}
+      >
+        <span style={{ color: 'rgba(232,213,176,0.2)', fontSize: '0.7em' }}>壱</span>
+        LE MURMURE
+      </h2>
+
+      <p
+        className="font-body"
+        style={{
+          fontSize:   'clamp(1.05rem, 1.7vw, 1.25rem)',
+          lineHeight:  1.9,
+          fontStyle:  'italic',
+          color:      'rgba(232,213,176,0.65)',
+        }}
+      >
+        La réalité est corrompue. Les mots n'ont plus de sens — seule la{' '}
+        <strong style={{ color: '#8b0000', fontStyle: 'normal', fontFamily: '"Cinzel", serif' }}>
+          vérité du sang
+        </strong>{' '}
+        compte. Il ne voit pas des visages humains, il voit des réseaux artériels palpitants.{' '}
+        <ParanoiaReveal
+          surface="Chaque battement de cœur adverse est une information."
+          hidden="CHAQUE CŒUR EST UNE HORLOGE QUE JE PEUX ARRÊTER."
+          size="md"
+        />
+      </p>
+    </div>
+
+    {/* ── INTERRUPTION — Texte géant, voix forte ────────────── */}
+    <div
+      style={{
+        position:    'relative',
+        marginLeft:  '-clamp(1.5rem, 18vw, 20rem)',
+        marginRight: '-clamp(1.5rem, 5vw, 5rem)',
+        overflow:    'hidden',
+        marginBottom: 'clamp(4rem, 8vw, 7rem)',
+        padding:     'clamp(1rem, 2vw, 2rem) 0',
+        borderTop:    '1px solid rgba(139,0,0,0.2)',
+        borderBottom: '1px solid rgba(139,0,0,0.2)',
+      }}
+    >
+      {/* Fond tache d'encre */}
+      <div
+        style={{
+          position:   'absolute',
+          inset:      0,
+          background: 'linear-gradient(90deg, rgba(61,0,0,0.15) 0%, transparent 60%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <StutterText
+        as="div"
+        intensity="high"
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(4rem, 14vw, 18rem)',
+          lineHeight:    0.9,
+          color:         'transparent',
+          WebkitTextStroke: '1px rgba(139,0,0,0.5)',
+          letterSpacing: '0.05em',
+          whiteSpace:    'nowrap',
+          paddingLeft:   'clamp(1.5rem, 5vw, 5rem)',
+          overflow:      'visible',
+          userSelect:    'none',
+        }}
+        aria-hidden="true"
+      >
+        ILS MENTENT TOUS
+      </StutterText>
+    </div>
+
+    {/* ── BLOC 02 — Dissonance ──────────────────────────────── */}
+    <div
+      style={{
+        display:    'grid',
+        gridTemplateColumns: '1fr 1.2fr',
+        gap:        'clamp(2rem, 4vw, 4rem)',
+        alignItems: 'start',
+      }}
+    >
+      {/* Log audio */}
+      <div
+        className="parchment-block"
+        style={{
+          padding:    'clamp(1.2rem, 2.5vw, 2.2rem)',
+          transform:  'rotate(0.6deg)',
+          marginTop:  '4rem',
+        }}
+      >
+        <div
+          style={{
+            display:    'flex',
+            alignItems: 'center',
+            gap:        '0.5rem',
+            marginBottom: '1rem',
+            paddingBottom: '0.8rem',
+            borderBottom: '1px solid rgba(139,0,0,0.2)',
+          }}
+        >
+          <div
+            style={{
+              width:      '6px',
+              height:     '6px',
+              borderRadius: '50%',
+              background: '#8b0000',
+              boxShadow:  '0 0 8px rgba(139,0,0,0.8)',
+              animation:  'blood-pulse 2s infinite',
+            }}
+          />
+          <span
+            className="font-noble"
+            style={{
+              fontSize:      '0.5rem',
+              letterSpacing: '0.4em',
+              color:         'rgba(139,0,0,0.6)',
+              textTransform: 'uppercase',
+            }}
+          >
+            Log Audio #44 — Censuré
+          </span>
         </div>
 
-        <div className="space-y-8 md:pl-12 md:mt-32">
-          <h3 className="font-bleach text-4xl md:text-5xl text-white mb-6 flex items-center gap-4">
-             <span className="text-[#ff0000]">02.</span> Dissonance
-          </h3>
-          <div className="bg-[#050000] border border-[#ff0000]/30 p-10 relative overflow-hidden group-hover:border-[#ff0000] transition-colors duration-500 shadow-[20px_20px_0px_rgba(255,0,0,0.05)] cursor-magnetic">
-             <div className="flex items-center gap-4 mb-8 border-b border-white/10 pb-4">
-               <div className="w-2 h-2 bg-[#ff0000] rounded-full animate-pulse"></div>
-               <p className="text-[#ff0000] text-xs uppercase font-mono tracking-widest">
-                Audio Log #44 - CENSURÉ
-               </p>
-             </div>
-             
-             <p className="text-white font-serif italic text-2xl md:text-3xl leading-relaxed relative z-10 pl-6 border-l-4 border-[#ff0000]">
-               "Ils mentent tous. Leurs bouches mentent... <br/><br/>
-               <span className="text-[#ff0000] font-bleach text-4xl not-italic tracking-wider drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">Mais leurs carotides hurlent.</span> <br/><br/>
-               Quand je coupe... le mensonge s'écoule enfin."
-             </p>
-          </div>
+        <p
+          className="font-body"
+          style={{
+            fontSize:   'clamp(1.1rem, 1.8vw, 1.4rem)',
+            fontStyle:  'italic',
+            lineHeight:  1.8,
+            color:      'rgba(232,213,176,0.7)',
+            borderLeft: '2px solid #3d0000',
+            paddingLeft: '1rem',
+          }}
+        >
+          "Ils mentent tous. Leurs bouches mentent...{' '}<br /><br />
+          <span
+            className="font-noble font-black"
+            style={{
+              color:      '#8b0000',
+              fontSize:   '1.4em',
+              fontStyle:  'normal',
+              display:    'block',
+              textShadow: '0 0 20px rgba(139,0,0,0.5)',
+              lineHeight:  1.2,
+              marginBottom: '0.8rem',
+            }}
+          >
+            Mais leurs carotides hurlent.
+          </span>
+          Quand je coupe... le mensonge s'écoule enfin."
+        </p>
+      </div>
+
+      {/* Dissonance — observations cliniques */}
+      <div>
+        <h2
+          className="font-noble font-black"
+          style={{
+            fontSize:      'clamp(1rem, 2vw, 1.5rem)',
+            color:         'rgba(139,0,0,0.8)',
+            letterSpacing: '0.15em',
+            marginBottom:  '1.5rem',
+            display:       'flex',
+            alignItems:    'center',
+            gap:           '0.8rem',
+          }}
+        >
+          <span style={{ color: 'rgba(232,213,176,0.2)', fontSize: '0.7em' }}>弐</span>
+          DISSONANCE
+        </h2>
+
+        <div
+          className="font-body"
+          style={{
+            fontSize:   'clamp(1rem, 1.6vw, 1.15rem)',
+            lineHeight:  1.9,
+            fontStyle:  'italic',
+            color:      'rgba(232,213,176,0.6)',
+            display:    'flex',
+            flexDirection: 'column',
+            gap:        '1.2rem',
+          }}
+        >
+          <p>
+            <ParanoiaReveal
+              surface="Il a regardé l'examinateur sans répondre pendant 4 minutes."
+              hidden="IL COMPTAIT MES PULSATIONS. IL SAVAIT."
+              size="sm"
+            />
+          </p>
+          <p>
+            <ParanoiaReveal
+              surface="Sa voix monte sans raison apparente."
+              hidden="SON SILENCE EST PLUS DANGEREUX QUE SES CRIS."
+              size="sm"
+            />
+          </p>
+          <p>
+            Le bégaiement s'intensifie uniquement lors des{' '}
+            <strong style={{ color: 'rgba(232,213,176,0.9)', fontStyle: 'normal' }}>
+              moments de lucidité
+            </strong>
+            {' '}— comme si la vérité résiste à sortir.
+          </p>
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);

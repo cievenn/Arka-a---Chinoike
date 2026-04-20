@@ -1,64 +1,214 @@
 import React from 'react';
-import { useScrambleText } from '../hooks/useScrambleText';
-import { Censored } from '../components/ui/Censored';
+import { StutterText }    from '../components/ui/StutterText';
+import { ParanoiaReveal } from '../components/ui/ParanoiaReveal';
 
-export const PageHistory = ({ trigger }) => {
-  const title = useScrambleText("TRAUMA INITIAL", trigger);
+/** ─── PageHistory — "Trauma Initial" ──────────────────────────
+ *  Les trois phases de la formation d'Isamu — journal de laboratoire.
+ *  Mise en page verticale de type "mur de notes" avec rotations et offsets.
+ */
 
-  const steps = [
-    {
-      id: "01",
-      subtitle: "Phase Initiale : Cobaye",
-      title: "L'Abattoir",
-      content: "Enfermé dans les laboratoires clandestins de Kiri. Exposition quotidienne à des toxines coagulantes extrêmement douloureuses pour forcer artificiellement l'éveil du Dojutsu. Les cris des autres sujets sont devenus sa seule berceuse."
+const phases = [
+  {
+    id:       '01',
+    kanji:    '壱',
+    subtitle: 'Phase Initiale',
+    title:    "L'Abattoir",
+    content:  "Enfermé dans les laboratoires clandestins de Kiri. Exposition quotidienne à des toxines coagulantes extremement douloureuses pour forcer l'éveil du Dojutsu. Les cris des autres sujets sont devenus sa seule berceuse.",
+    paranoia: {
+      surface: "Les autres sujets pleuraient la nuit.",
+      hidden:  "IL COLLECTAIT LEUR DOULEUR. IL APPRENAIT.",
     },
-    {
-      id: "02",
-      subtitle: "Phase Critique : Rupture",
-      title: "L'Éveil Rouge",
-      content: "Le jour où l'esprit a craqué. Surcharge sensorielle absolue lors d'une injection. L'œil s'est ouvert en se gorgeant de son propre sang. Premier massacre documenté dans la salle d'observation (Bilan: 14 morts, aucun corps intact)."
+    rotate:   '-0.7deg',
+    offset:   '0rem',
+  },
+  {
+    id:       '02',
+    kanji:    '弐',
+    subtitle: 'Phase Critique',
+    title:    "L'Éveil Rouge",
+    content:  "Le jour où l'esprit a craqué. Surcharge sensorielle absolue lors d'une injection. L'œil s'est ouvert en se gorgeant de son propre sang. Premier massacre documenté.",
+    paranoia: {
+      surface: "Bilan : 14 morts, aucun corps intact.",
+      hidden:  "IL NE SAIT PAS QUI IL A TUÉ. IL S'EN FOUT.",
     },
-    {
-      id: "03",
-      subtitle: "Phase Actuelle : Arme",
-      title: "Lâché dans la Brume",
-      content: "Jugé trop dangereux pour la société, mais trop utile pour être exécuté. Lâché dans l'Académie Ninja comme un prédateur en laisse. L'ANBU attend simplement l'ordre pour le déployer."
-    }
-  ];
+    rotate:   '0.5deg',
+    offset:   'clamp(3rem, 8vw, 8rem)',
+  },
+  {
+    id:       '03',
+    kanji:    '参',
+    subtitle: 'Phase Actuelle',
+    title:    'Lâché dans la Brume',
+    content:  "Jugé trop dangereux pour la société, mais trop utile pour être exécuté. L'ANBU attend l'ordre de déploiement. Il le sait. Ça ne le dérange pas.",
+    paranoia: {
+      surface: "Il coopère avec les autorités.",
+      hidden:  "IL ATTEND LE BON MOMENT. NOUS TOUS.",
+    },
+    rotate:   '-0.3deg',
+    offset:   'clamp(1rem, 3vw, 3rem)',
+  },
+];
 
-  return (
-    <div className="space-y-24 relative z-10">
-       <div className="border-b border-white/10 pb-12 mb-16">
-         <h1 className="text-6xl md:text-[7rem] leading-none font-bleach text-white tracking-tighter uppercase relative inline-block">
-            {title}
-            <div className="absolute top-1/2 -right-12 w-24 h-px bg-[#ff0000]"></div>
-         </h1>
-      </div>
+export const PageHistory = () => (
+  <div style={{ position: 'relative' }}>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {steps.map((step, index) => (
-          <div key={step.id} className="group relative flex flex-col pt-12">
-            <div className="absolute -top-10 left-0 text-[8rem] font-bleach text-white/5 group-hover:text-[#ff0000]/10 transition-colors duration-700 pointer-events-none select-none z-0">
-              {step.id}
-            </div>
-            
-            <div className="relative z-10 border-t-2 border-white/10 group-hover:border-[#ff0000] pt-6 transition-colors duration-500 h-full flex flex-col">
-              <span className="font-mono text-xs text-[#ff0000] tracking-widest uppercase block mb-4">
-                {step.subtitle}
-              </span>
-              <h3 className="font-bleach text-3xl md:text-4xl text-white mb-6">
-                {step.title}
-              </h3>
-              <p className="text-white/60 font-serif text-lg leading-relaxed mt-auto">
-                {step.content.split(' ').map((word, i) => {
-                  const w = word || '';
-                  return w.includes('massacre') || w.includes('laboratoires') ? <Censored key={i}>{w} </Censored> : <span key={i}>{w} </span>;
-                })}
-              </p>
-            </div>
-          </div>
-        ))}
+    {/* ── TITRE ──────────────────────────────────────────────── */}
+    <div style={{ marginBottom: 'clamp(3rem, 7vw, 6rem)' }}>
+      <p
+        className="font-noble"
+        style={{
+          fontSize:      '0.6rem',
+          letterSpacing: '0.5em',
+          color:         'rgba(139,0,0,0.5)',
+          textTransform: 'uppercase',
+          marginBottom:  '0.5rem',
+        }}
+      >
+        — Archives Classifiées / Kiri ANBU
+      </p>
+
+      <StutterText
+        as="h1"
+        intensity="low"
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(3rem, 10vw, 10rem)',
+          lineHeight:    0.9,
+          color:         '#e8d5b0',
+          letterSpacing: '-0.02em',
+          display:       'block',
+        }}
+      >
+        TRAUMA
+      </StutterText>
+      <div
+        className="font-noble font-black"
+        style={{
+          fontSize:      'clamp(3rem, 10vw, 10rem)',
+          lineHeight:    0.9,
+          color:         'transparent',
+          WebkitTextStroke: '1px rgba(139,0,0,0.6)',
+          letterSpacing: '-0.02em',
+          marginLeft:    'clamp(3rem, 8vw, 8rem)',
+        }}
+      >
+        INITIAL
       </div>
     </div>
-  );
-};
+
+    {/* ── TIMELINE — Mur de notes ────────────────────────────── */}
+    <div
+      style={{
+        display:       'flex',
+        flexDirection: 'column',
+        gap:           'clamp(3rem, 6vw, 5rem)',
+      }}
+    >
+      {phases.map((phase, i) => (
+        <div
+          key={phase.id}
+          style={{
+            display:       'grid',
+            gridTemplateColumns: '80px 1fr',
+            gap:           'clamp(1.5rem, 3vw, 3rem)',
+            alignItems:    'start',
+            marginLeft:    phase.offset,
+            transform:     `rotate(${phase.rotate})`,
+          }}
+        >
+          {/* Numéro + kanji */}
+          <div style={{ textAlign: 'center', paddingTop: '0.5rem' }}>
+            <div
+              className="font-noble font-black"
+              style={{
+                fontSize:   'clamp(2rem, 5vw, 4rem)',
+                color:      'rgba(139,0,0,0.4)',
+                lineHeight:  1,
+              }}
+            >
+              {phase.id}
+            </div>
+            <div
+              className="font-kanji"
+              style={{
+                fontSize:   '0.9rem',
+                color:      'rgba(139,0,0,0.25)',
+                marginTop:  '0.3rem',
+              }}
+            >
+              {phase.kanji}
+            </div>
+
+            {/* Ligne verticale — connexion de timeline */}
+            {i < phases.length - 1 && (
+              <div
+                style={{
+                  width:      '1px',
+                  height:     'clamp(3rem, 6vw, 5rem)',
+                  background: 'linear-gradient(to bottom, #3d0000, transparent)',
+                  margin:     '0.8rem auto 0',
+                }}
+              />
+            )}
+          </div>
+
+          {/* Contenu */}
+          <div className="parchment-block" style={{ padding: 'clamp(1.2rem, 2.5vw, 2rem)' }}>
+            <p
+              className="font-noble"
+              style={{
+                fontSize:      '0.55rem',
+                letterSpacing: '0.4em',
+                color:         'rgba(139,0,0,0.5)',
+                textTransform: 'uppercase',
+                marginBottom:  '0.5rem',
+              }}
+            >
+              {phase.subtitle}
+            </p>
+
+            <h2
+              className="font-noble font-black"
+              style={{
+                fontSize:      'clamp(1.5rem, 3vw, 2.5rem)',
+                color:         '#e8d5b0',
+                letterSpacing: '0.03em',
+                marginBottom:  '1rem',
+                lineHeight:     1.1,
+              }}
+            >
+              {phase.title}
+            </h2>
+
+            <p
+              className="font-body"
+              style={{
+                fontSize:   'clamp(0.95rem, 1.5vw, 1.1rem)',
+                fontStyle:  'italic',
+                lineHeight:  1.85,
+                color:      'rgba(232,213,176,0.6)',
+                marginBottom: '1rem',
+              }}
+            >
+              {phase.content}
+            </p>
+
+            {/* Révélation paranoïaque */}
+            <div
+              style={{
+                paddingTop:  '0.8rem',
+                borderTop:   '1px solid rgba(139,0,0,0.2)',
+              }}
+            >
+              <ParanoiaReveal
+                surface={phase.paranoia.surface}
+                hidden={phase.paranoia.hidden}
+                size="sm"
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
