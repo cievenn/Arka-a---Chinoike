@@ -16,7 +16,7 @@ export const PageObjectives = () => (
         style={{
           fontSize:      '0.6rem',
           letterSpacing: '0.5em',
-          color:         'rgba(139,0,0,0.5)',
+          color:         'rgba(139,0,0,0.7)',
           textTransform: 'uppercase',
           marginBottom:  '0.5rem',
         }}
@@ -47,7 +47,7 @@ export const PageObjectives = () => (
           fontSize:      'clamp(3rem, 11vw, 12rem)',
           lineHeight:    0.88,
           color:         'transparent',
-          WebkitTextStroke: '1px rgba(232,213,176,0.4)',
+          WebkitTextStroke: '1px rgba(232,213,176,0.65)',
           letterSpacing: '-0.02em',
           overflow:      'visible',
           marginLeft:    'clamp(4rem, 10vw, 12rem)',
@@ -89,7 +89,7 @@ export const PageObjectives = () => (
             fontSize:   'clamp(1rem, 1.6vw, 1.2rem)',
             fontStyle:  'italic',
             lineHeight:  1.9,
-            color:      'rgba(232,213,176,0.6)',
+            color:      'rgba(232,213,176,0.85)',
             marginBottom: '1.2rem',
           }}
         >
@@ -143,7 +143,7 @@ export const PageObjectives = () => (
           fontSize:      'clamp(2rem, 7vw, 8rem)',
           lineHeight:    1,
           color:         'transparent',
-          WebkitTextStroke: '1px rgba(139,0,0,0.4)',
+          WebkitTextStroke: '1px rgba(139,0,0,0.6)',
           letterSpacing: '0.05em',
           textTransform: 'uppercase',
           marginLeft:    'clamp(2rem, 5vw, 6rem)',
@@ -159,7 +159,7 @@ export const PageObjectives = () => (
           lineHeight:    0.9,
           color:         '#8b0000',
           letterSpacing: '-0.02em',
-          textShadow:    '0 0 60px rgba(139,0,0,0.4)',
+          textShadow:    '0 0 60px rgba(139,0,0,0.6)',
           overflow:      'visible',
           marginLeft:    'clamp(8rem, 20vw, 24rem)',
         }}
@@ -215,7 +215,7 @@ export const PageObjectives = () => (
               fontSize:   'clamp(1rem, 1.6vw, 1.2rem)',
               fontStyle:  'italic',
               lineHeight:  1.9,
-              color:      'rgba(232,213,176,0.65)',
+              color:      'rgba(232,213,176,0.9)',
               marginBottom: '1.5rem',
             }}
           >

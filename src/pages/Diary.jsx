@@ -34,7 +34,7 @@ const JournalEntry = ({
         right:       0,
         width:       '40px',
         height:      '40px',
-        background:  'linear-gradient(225deg, rgba(139,0,0,0.4) 50%, transparent 50%)',
+        background:  'linear-gradient(225deg, rgba(139,0,0,0.6) 50%, transparent 50%)',
         pointerEvents: 'none',
       }}
     />
@@ -45,7 +45,7 @@ const JournalEntry = ({
         style={{
           fontSize:      '0.5rem',
           letterSpacing: '0.4em',
-          color:         'rgba(139,0,0,0.5)',
+          color:         'rgba(139,0,0,0.7)',
           textTransform: 'uppercase',
           marginBottom:  '0.8rem',
         }}
@@ -60,7 +60,7 @@ const JournalEntry = ({
         fontSize:   'clamp(0.95rem, 1.5vw, 1.1rem)',
         fontStyle:  'italic',
         lineHeight:  1.9,
-        color:      'rgba(232,213,176,0.65)',
+        color:      'rgba(232,213,176,0.9)',
         ...style,
       }}
     >
@@ -70,7 +70,7 @@ const JournalEntry = ({
 );
 
 // ── Composant Annotation en marge ────────────────────────────
-const Annotation = ({ children, rotate = '90deg', side = 'left', color = 'rgba(139,0,0,0.5)' }) => (
+const Annotation = ({ children, rotate = '90deg', side = 'left', color = 'rgba(139,0,0,0.7)' }) => (
   <div
     className="font-noble font-black"
     style={{
@@ -102,7 +102,7 @@ export const Diary = () => (
           fontSize:      'clamp(4rem, 13vw, 15rem)',
           lineHeight:    0.85,
           color:         'transparent',
-          WebkitTextStroke: '1px rgba(232,213,176,0.5)',
+          WebkitTextStroke: '1px rgba(232,213,176,0.75)',
           letterSpacing: '0.02em',
           overflow:      'visible',
         }}
@@ -135,7 +135,7 @@ export const Diary = () => (
         style={{
           fontSize:      '0.6rem',
           letterSpacing: '0.4em',
-          color:         'rgba(232,213,176,0.25)',
+          color:         'rgba(232,213,176,0.45)',
           textTransform: 'uppercase',
           marginTop:     '1rem',
         }}
@@ -293,7 +293,7 @@ export const Diary = () => (
           hidden="ELLE VOULAIT QUE JE BAISSE MA GARDE. J'AI VU SES VEINES PALPITER PLUS VITE EN M'APPROCHANT."
           size="md"
         />
-        <p style={{ marginTop: '1rem', color: 'rgba(232,213,176,0.4)', fontSize: '0.85em' }}>
+        <p style={{ marginTop: '1rem', color: 'rgba(232,213,176,0.65)', fontSize: '0.85em' }}>
           Je ne recommencerai pas l'erreur de faire confiance.
         </p>
       </JournalEntry>
@@ -317,7 +317,7 @@ export const Diary = () => (
         style={{
           fontSize:      '0.6rem',
           letterSpacing: '0.4em',
-          color:         'rgba(139,0,0,0.5)',
+          color:         'rgba(139,0,0,0.7)',
           textTransform: 'uppercase',
           marginBottom:  '1rem',
         }}
@@ -343,7 +343,7 @@ export const Diary = () => (
           </p>
           <p style={{ marginTop: '1rem' }}>
             J'entends chaque cœur dans ce bâtiment.{' '}
-            <em style={{ color: 'rgba(232,213,176,0.4)' }}>
+            <em style={{ color: 'rgba(232,213,176,0.65)' }}>
               Trente-deux personnes. Toutes des menteurs.
             </em>
           </p>
@@ -381,7 +381,7 @@ export const Diary = () => (
               right:         '0',
               fontSize:      'clamp(0.6rem, 1vw, 0.8rem)',
               letterSpacing: '0.3em',
-              color:         'rgba(139,0,0,0.5)',
+              color:         'rgba(139,0,0,0.7)',
               textTransform: 'uppercase',
             }}
           >

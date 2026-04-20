@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 
-import { DOSSIER_DATA } from './data';
-import { InkCursor }     from './components/ui/InkCursor';
-import { BloodDropIntro } from './components/ui/BloodDropIntro';
-import { BloodMetaballs } from './components/ui/BloodMetaballs';
-import { MistOverlay }    from './components/ui/MistOverlay';
-import { StutterText }    from './components/ui/StutterText';
+import { DOSSIER_DATA }    from './data';
+import { InkCursor }       from './components/ui/InkCursor';
+import { BloodDropIntro }  from './components/ui/BloodDropIntro';
+import { BloodMetaballs }  from './components/ui/BloodMetaballs';
+import { MistOverlay }     from './components/ui/MistOverlay';
+import { StutterText }     from './components/ui/StutterText';
 
-import { PageGeneral }     from './pages/PageGeneral';
-import { PagePersonality } from './pages/PagePersonality';
-import { PageHistory }     from './pages/PageHistory';
-import { PageObjectives }  from './pages/PageObjectives';
-import { Diary }           from './pages/Diary';
+import { GeneralInfo }  from './pages/GeneralInfo';
+import { Psychology }   from './pages/Psychology';
+import { CombatStyle }  from './pages/CombatStyle';
+import { Objectives }   from './pages/Objectives';
+import { History }      from './pages/History';
 
 // ─── Onglets de navigation ────────────────────────────────────
 const TABS = [
-  { id: 'general',     kanji: '壱', label: 'Matière Première' },
-  { id: 'personality', kanji: '弐', label: 'Fracture Mentale' },
-  { id: 'history',     kanji: '参', label: 'Trauma Initial'   },
-  { id: 'objectives',  kanji: '四', label: 'Dessein Final'     },
-  { id: 'diary',       kanji: '血', label: 'Journal Intime'    },
+  { id: 'general',    kanji: '壱', label: 'Informations'    },
+  { id: 'psychology', kanji: '弐', label: 'Profil Psycho'   },
+  { id: 'combat',     kanji: '参', label: 'Combat'          },
+  { id: 'objectives', kanji: '四', label: 'Objectifs'       },
+  { id: 'history',    kanji: '伍', label: 'Histoire'        },
 ];
 
-// ─── Composant de transition de page ─────────────────────────
+// ─── Transition douce entre pages ─────────────────────────────
 const PageTransition = ({ children, isTransitioning }) => (
   <div
     style={{
       opacity:    isTransitioning ? 0 : 1,
-      filter:     isTransitioning ? 'blur(4px)' : 'blur(0px)',
-      transform:  isTransitioning ? 'translateY(8px)' : 'translateY(0)',
-      transition: 'opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease',
+      filter:     isTransitioning ? 'blur(6px)' : 'blur(0px)',
+      transform:  isTransitioning ? 'translateY(18px)' : 'translateY(0)',
+      transition: 'opacity 0.55s cubic-bezier(0.4,0,0.2,1), filter 0.55s ease, transform 0.6s cubic-bezier(0.4,0,0.2,1)',
       width:      '100%',
     }}
   >
@@ -39,10 +39,10 @@ const PageTransition = ({ children, isTransitioning }) => (
 
 // ─── COMPOSANT PRINCIPAL ──────────────────────────────────────
 export default function App() {
-  const [activeTab,      setActiveTab]      = useState('general');
-  const [nextTab,        setNextTab]        = useState('general');
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [introDone,      setIntroDone]      = useState(false);
+  const [activeTab,        setActiveTab]        = useState('general');
+  const [nextTab,          setNextTab]          = useState('general');
+  const [isTransitioning,  setIsTransitioning]  = useState(false);
+  const [introDone,        setIntroDone]        = useState(false);
 
   const handleTabChange = (tabId) => {
     if (tabId === activeTab || isTransitioning) return;
@@ -51,7 +51,7 @@ export default function App() {
       setActiveTab(tabId);
       setNextTab(tabId);
       setIsTransitioning(false);
-    }, 500);
+    }, 550);
   };
 
   return (
@@ -59,21 +59,15 @@ export default function App() {
       className="min-h-screen overflow-hidden flex flex-col"
       style={{ background: '#0a0000', color: '#e8d5b0' }}
     >
-      {/* Curseur tache d'encre */}
       <InkCursor />
 
-      {/* Intro — goutte de sang sur parchemin */}
       {!introDone && (
         <BloodDropIntro onComplete={() => setIntroDone(true)} />
       )}
 
-      {/* Contenu principal — affiché après l'intro */}
       {introDone && (
         <>
-          {/* Fond — flaques de sang qui fusionnent */}
           <BloodMetaballs count={8} />
-
-          {/* Brume dense de Kiri */}
           <MistOverlay />
 
           {/* ── EN-TÊTE ──────────────────────────────────────── */}
@@ -81,7 +75,6 @@ export default function App() {
             className="fixed top-0 left-0 w-full z-40 flex justify-between items-start"
             style={{ padding: 'clamp(1rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem)' }}
           >
-            {/* Titre — Nom du clan */}
             <div style={{ mixBlendMode: 'difference', pointerEvents: 'none' }}>
               <StutterText
                 as="div"
@@ -95,7 +88,7 @@ export default function App() {
                 className="font-body italic"
                 style={{
                   fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
-                  color:    'rgba(139,0,0,0.8)',
+                  color: '#ff3333',
                   letterSpacing: '0.4em',
                   marginTop: '0.2rem',
                 }}
@@ -104,19 +97,18 @@ export default function App() {
               </div>
             </div>
 
-            {/* ID dossier */}
             <div
               className="font-body text-right"
               style={{
-                color:         'rgba(232,213,176,0.35)',
-                fontSize:      'clamp(0.6rem, 0.9vw, 0.75rem)',
+                color: '#e8d5b0',
+                fontSize: 'clamp(0.6rem, 0.9vw, 0.75rem)',
                 letterSpacing: '0.25em',
-                lineHeight:    1.8,
+                lineHeight: 1.8,
                 pointerEvents: 'none',
               }}
             >
-              {DOSSIER_DATA.id}<br />
-              <span style={{ color: 'rgba(139,0,0,0.7)' }}>ACCÈS RESTREINT</span>
+              DOSSIER #092-CHI<br />
+              <span style={{ color: '#ff3333' }}>SÉCURITÉ NIVEAU 3</span>
             </div>
           </header>
 
@@ -124,14 +116,14 @@ export default function App() {
           <div
             className="flex-1 w-full flex flex-col md:flex-row"
             style={{
-              minHeight:    '100vh',
-              overflowY:    'auto',
-              overflowX:    'hidden',
+              minHeight: '100vh',
+              overflowY: 'auto',
+              overflowX: 'hidden',
               scrollbarWidth: 'thin',
               scrollbarColor: '#3d0000 #0a0000',
             }}
           >
-            {/* Navigation verticale — côté gauche */}
+            {/* Navigation verticale */}
             <nav
               className="md:fixed md:left-0 md:top-1/2 md:-translate-y-1/2 z-50"
               style={{ padding: 'clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 3rem)' }}
@@ -149,49 +141,46 @@ export default function App() {
                         onClick={() => handleTabChange(tab.id)}
                         aria-current={isActive ? 'page' : undefined}
                         style={{
-                          display:     'flex',
-                          alignItems:  'center',
-                          gap:         '0.75rem',
-                          padding:     '0.4rem 0',
-                          background:  'none',
-                          border:      'none',
-                          color:       isActive ? '#e8d5b0' : 'rgba(232,213,176,0.25)',
-                          transition:  'color 0.4s ease, transform 0.3s ease',
-                          transform:   isActive ? 'translateX(4px)' : 'translateX(0)',
-                          whiteSpace:  'nowrap',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.75rem',
+                          padding: '0.4rem 0',
+                          background: 'none',
+                          border: 'none',
+                          color: isActive ? '#e8d5b0' : '#e8d5b0',
+                          transition: 'color 0.4s ease, transform 0.3s ease',
+                          transform: isActive ? 'translateX(4px)' : 'translateX(0)',
+                          whiteSpace: 'nowrap',
                         }}
-                        onMouseEnter={e => !isActive && (e.currentTarget.style.color = 'rgba(232,213,176,0.6)')}
-                        onMouseLeave={e => !isActive && (e.currentTarget.style.color = 'rgba(232,213,176,0.25)')}
+                        onMouseEnter={e => !isActive && (e.currentTarget.style.color = '#e8d5b0')}
+                        onMouseLeave={e => !isActive && (e.currentTarget.style.color = '#e8d5b0')}
                       >
-                        {/* Kanji indicateur */}
                         <span
                           className="font-kanji font-black"
                           style={{
                             fontSize: '0.85rem',
-                            color:    isActive ? '#8b0000' : 'rgba(139,0,0,0.3)',
+                            color: isActive ? '#cc0000' : 'rgba(255,50,50,0.85)',
                             transition: 'color 0.4s ease',
                           }}
                         >
                           {tab.kanji}
                         </span>
 
-                        {/* Barre active */}
                         <span
                           style={{
-                            display:         'inline-block',
-                            width:           isActive ? '24px' : '8px',
-                            height:          '1px',
-                            background:      isActive ? '#8b0000' : 'rgba(232,213,176,0.2)',
-                            transition:      'width 0.4s ease, background 0.4s ease',
-                            boxShadow:       isActive ? '0 0 8px rgba(139,0,0,0.6)' : 'none',
+                            display: 'inline-block',
+                            width: isActive ? '24px' : '8px',
+                            height: '1px',
+                            background: isActive ? '#cc0000' : '#e8d5b0',
+                            transition: 'width 0.4s ease, background 0.4s ease',
+                            boxShadow: isActive ? '0 0 8px #ff3333' : 'none',
                           }}
                         />
 
-                        {/* Label */}
                         <span
                           className="font-noble"
                           style={{
-                            fontSize:      'clamp(0.55rem, 0.8vw, 0.7rem)',
+                            fontSize: 'clamp(0.55rem, 0.8vw, 0.7rem)',
                             letterSpacing: '0.2em',
                             textTransform: 'uppercase',
                           }}
@@ -209,18 +198,18 @@ export default function App() {
             <main
               className="flex-1 relative z-20"
               style={{
-                paddingLeft:  'clamp(1.5rem, 18vw, 20rem)',
+                paddingLeft: 'clamp(1.5rem, 18vw, 20rem)',
                 paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
-                paddingTop:   'clamp(6rem, 12vh, 10rem)',
+                paddingTop: 'clamp(6rem, 12vh, 10rem)',
                 paddingBottom: 'clamp(3rem, 6vw, 6rem)',
               }}
             >
               <PageTransition isTransitioning={isTransitioning}>
-                {activeTab === 'general'     && <PageGeneral />}
-                {activeTab === 'personality' && <PagePersonality />}
-                {activeTab === 'history'     && <PageHistory />}
-                {activeTab === 'objectives'  && <PageObjectives />}
-                {activeTab === 'diary'       && <Diary />}
+                {activeTab === 'general'    && <GeneralInfo />}
+                {activeTab === 'psychology' && <Psychology />}
+                {activeTab === 'combat'     && <CombatStyle />}
+                {activeTab === 'objectives' && <Objectives />}
+                {activeTab === 'history'    && <History />}
               </PageTransition>
             </main>
           </div>

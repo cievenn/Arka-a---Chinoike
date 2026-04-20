@@ -59,7 +59,7 @@ export const PageHistory = () => (
         style={{
           fontSize:      '0.6rem',
           letterSpacing: '0.5em',
-          color:         'rgba(139,0,0,0.5)',
+          color:         'rgba(139,0,0,0.7)',
           textTransform: 'uppercase',
           marginBottom:  '0.5rem',
         }}
@@ -122,7 +122,7 @@ export const PageHistory = () => (
               className="font-noble font-black"
               style={{
                 fontSize:   'clamp(2rem, 5vw, 4rem)',
-                color:      'rgba(139,0,0,0.4)',
+                color:      'rgba(139,0,0,0.6)',
                 lineHeight:  1,
               }}
             >
@@ -159,7 +159,7 @@ export const PageHistory = () => (
               style={{
                 fontSize:      '0.55rem',
                 letterSpacing: '0.4em',
-                color:         'rgba(139,0,0,0.5)',
+                color:         'rgba(139,0,0,0.7)',
                 textTransform: 'uppercase',
                 marginBottom:  '0.5rem',
               }}
@@ -186,7 +186,7 @@ export const PageHistory = () => (
                 fontSize:   'clamp(0.95rem, 1.5vw, 1.1rem)',
                 fontStyle:  'italic',
                 lineHeight:  1.85,
-                color:      'rgba(232,213,176,0.6)',
+                color:      'rgba(232,213,176,0.85)',
                 marginBottom: '1rem',
               }}
             >

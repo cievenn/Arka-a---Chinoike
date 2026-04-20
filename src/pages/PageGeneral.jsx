@@ -62,7 +62,7 @@ export const PageGeneral = () => (
             fontSize:         'clamp(5rem, 18vw, 20rem)',
             lineHeight:       0.85,
             color:            'transparent',
-            WebkitTextStroke: '1.5px rgba(232,213,176,0.6)',
+            WebkitTextStroke: '1.5px rgba(232,213,176,0.85)',
             letterSpacing:    '-0.03em',
             overflow:         'visible',
             whiteSpace:       'nowrap',
@@ -98,7 +98,7 @@ export const PageGeneral = () => (
           className="font-kanji font-black"
           style={{
             fontSize:   'clamp(1.8rem, 5vw, 4rem)',
-            color:      'rgba(139,0,0,0.4)',
+            color:      'rgba(139,0,0,0.6)',
             lineHeight:  1,
           }}
         >
@@ -160,7 +160,7 @@ export const PageGeneral = () => (
                 style={{
                   fontSize:      '0.55rem',
                   letterSpacing: '0.35em',
-                  color:         'rgba(232,213,176,0.35)',
+                  color:         'rgba(232,213,176,0.6)',
                   textTransform: 'uppercase',
                   marginBottom:  '0.2rem',
                 }}
@@ -206,7 +206,7 @@ export const PageGeneral = () => (
           style={{
             fontSize:   'clamp(1rem, 1.6vw, 1.2rem)',
             lineHeight:  1.8,
-            color:      'rgba(232,213,176,0.65)',
+            color:      'rgba(232,213,176,0.9)',
             fontStyle:  'italic',
           }}
         >
@@ -237,7 +237,7 @@ export const PageGeneral = () => (
             </strong>
           </p>
 
-          <p style={{ color: 'rgba(232,213,176,0.35)', fontSize: '0.9em' }}>
+          <p style={{ color: 'rgba(232,213,176,0.6)', fontSize: '0.9em' }}>
             <ParanoiaReveal
               surface="Profil psychologique : instable chronique."
               hidden="IL EST CONSCIENT. IL FAIT SEMBLANT."

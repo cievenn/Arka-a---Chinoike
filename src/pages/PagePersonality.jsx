@@ -17,7 +17,7 @@ export const PagePersonality = () => (
         style={{
           fontSize:      '0.6rem',
           letterSpacing: '0.5em',
-          color:         'rgba(139,0,0,0.5)',
+          color:         'rgba(139,0,0,0.7)',
           textTransform: 'uppercase',
           marginBottom:  '0.5rem',
         }}
@@ -89,7 +89,7 @@ export const PagePersonality = () => (
           fontSize:   'clamp(1.05rem, 1.7vw, 1.25rem)',
           lineHeight:  1.9,
           fontStyle:  'italic',
-          color:      'rgba(232,213,176,0.65)',
+          color:      'rgba(232,213,176,0.9)',
         }}
       >
         La réalité est corrompue. Les mots n'ont plus de sens — seule la{' '}
@@ -136,7 +136,7 @@ export const PagePersonality = () => (
           fontSize:      'clamp(4rem, 14vw, 18rem)',
           lineHeight:    0.9,
           color:         'transparent',
-          WebkitTextStroke: '1px rgba(139,0,0,0.5)',
+          WebkitTextStroke: '1px rgba(139,0,0,0.7)',
           letterSpacing: '0.05em',
           whiteSpace:    'nowrap',
           paddingLeft:   'clamp(1.5rem, 5vw, 5rem)',
@@ -219,7 +219,7 @@ export const PagePersonality = () => (
               fontSize:   '1.4em',
               fontStyle:  'normal',
               display:    'block',
-              textShadow: '0 0 20px rgba(139,0,0,0.5)',
+              textShadow: '0 0 20px rgba(139,0,0,0.7)',
               lineHeight:  1.2,
               marginBottom: '0.8rem',
             }}
@@ -254,7 +254,7 @@ export const PagePersonality = () => (
             fontSize:   'clamp(1rem, 1.6vw, 1.15rem)',
             lineHeight:  1.9,
             fontStyle:  'italic',
-            color:      'rgba(232,213,176,0.6)',
+            color:      'rgba(232,213,176,0.85)',
             display:    'flex',
             flexDirection: 'column',
             gap:        '1.2rem',
