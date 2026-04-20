@@ -460,7 +460,7 @@ export const History = () => (
         <Para>
           C'est alors que la réalité se déforma. La lumière passera au pourpre, les ombres s'allongèrent
           comme des épées de la brume étudiée en cours. Au milieu de cette distorsion, une silhouette se dessina :{' '}
-          <strong style={{ color: '#cc0000', fontStyle: 'normal', textDecoration: 'line-through' }}>Ktrusouuchi</strong>.
+          <strong style={{ color: '#cc0000', fontStyle: 'normal', textDecoration: 'line-through' }}>Kurotsuchi</strong>.
           Il se tenait là, debout devant le tableau, imperturbable, le regard brillant d'une lucidité
           cruelle que personne d'autre ne semblait percevoir.
         </Para>

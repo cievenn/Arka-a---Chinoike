@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { DOSSIER_DATA }    from './data';
 import { InkCursor }       from './components/ui/InkCursor';
 import { BloodDropIntro }  from './components/ui/BloodDropIntro';
 import { BloodMetaballs }  from './components/ui/BloodMetaballs';
