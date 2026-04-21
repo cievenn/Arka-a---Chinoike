@@ -121,11 +121,8 @@ export const Objectives = () => (
       {OBJECTIVES.map((obj) => (
         <div
           key={obj.id}
+          className="grid-responsive-num mobile-no-offset"
           style={{
-            display:              'grid',
-            gridTemplateColumns:  '80px 1fr',
-            gap:                  'clamp(1.5rem, 3vw, 3rem)',
-            alignItems:           'start',
             marginLeft:           obj.offset,
             transform:            `rotate(${obj.rotate})`,
           }}

@@ -41,7 +41,7 @@ export const CombatStyle = () => (
       <StutterText
         as="div"
         intensity="med"
-        className="font-noble font-black"
+        className="font-noble font-black mobile-no-offset"
         style={{
           fontSize:      'clamp(3rem, 10vw, 11rem)',
           lineHeight:    0.88,
@@ -127,14 +127,7 @@ export const CombatStyle = () => (
 
     {/* ── SECTION 2 — Le Paradoxe de la Porphyrie ────────────────── */}
     <div style={{ marginBottom: 'clamp(3.5rem, 6vw, 5rem)' }}>
-      <div
-        style={{
-          display:              'grid',
-          gridTemplateColumns:  '1fr 1fr',
-          gap:                  'clamp(2rem, 3.5vw, 3.5rem)',
-          alignItems:           'start',
-        }}
-      >
+      <div className="grid-responsive-2">
         {/* Point Négatif */}
         <div
           className="parchment-block"
@@ -252,14 +245,7 @@ export const CombatStyle = () => (
         </h2>
       </div>
 
-      <div
-        style={{
-          display:              'grid',
-          gridTemplateColumns:  '1fr 1fr',
-          gap:                  'clamp(2rem, 3.5vw, 3.5rem)',
-          alignItems:           'start',
-        }}
-      >
+      <div className="grid-responsive-2">
         {/* Poison / Saignée */}
         <div className="parchment-block" style={{ padding: 'clamp(1.2rem, 2.5vw, 2rem)', transform: 'rotate(-0.5deg)' }}>
           <h3

@@ -72,23 +72,23 @@ export default function App() {
           {/* ── EN-TÊTE ──────────────────────────────────────── */}
           <header
             className="fixed top-0 left-0 w-full z-40 flex justify-between items-start"
-            style={{ padding: 'clamp(1rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem)' }}
+            style={{ padding: 'clamp(0.75rem, 2.5vw, 2.5rem) clamp(1rem, 4vw, 4rem)' }}
           >
             <div style={{ mixBlendMode: 'difference', pointerEvents: 'none' }}>
               <StutterText
                 as="div"
                 intensity="low"
                 className="font-noble font-black tracking-[0.15em] leading-none"
-                style={{ fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#e8d5b0' }}
+                style={{ fontSize: 'clamp(1rem, 3vw, 2.2rem)', color: '#e8d5b0' }}
               >
                 CHINOIKE
               </StutterText>
               <div
-                className="font-body italic"
+                className="font-body italic hidden sm:block"
                 style={{
-                  fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
+                  fontSize: 'clamp(0.55rem, 1.2vw, 0.9rem)',
                   color: '#ff3333',
-                  letterSpacing: '0.4em',
+                  letterSpacing: '0.3em',
                   marginTop: '0.2rem',
                 }}
               >
@@ -97,11 +97,11 @@ export default function App() {
             </div>
 
             <div
-              className="font-body text-right"
+              className="font-body text-right hidden sm:block"
               style={{
                 color: '#e8d5b0',
-                fontSize: 'clamp(0.6rem, 0.9vw, 0.75rem)',
-                letterSpacing: '0.25em',
+                fontSize: 'clamp(0.55rem, 0.9vw, 0.75rem)',
+                letterSpacing: '0.2em',
                 lineHeight: 1.8,
                 pointerEvents: 'none',
               }}
@@ -111,27 +111,23 @@ export default function App() {
             </div>
           </header>
 
-          {/* ── LAYOUT : NAV + CONTENU ─────────────────────── */}
+          {/* ── LAYOUT : NAV (desktop gauche / mobile bas) + CONTENU ─── */}
           <div
-            className="flex-1 w-full flex flex-col md:flex-row"
+            className="flex-1 w-full"
             style={{
               minHeight: '100vh',
-              overflowY: 'auto',
               overflowX: 'hidden',
               scrollbarWidth: 'thin',
               scrollbarColor: '#3d0000 #0a0000',
             }}
           >
-            {/* Navigation verticale */}
+            {/* ── Navigation desktop : fixée à gauche ─────────────── */}
             <nav
-              className="md:fixed md:left-0 md:top-1/2 md:-translate-y-1/2 z-50"
+              className="hidden md:flex md:fixed md:left-0 md:top-1/2 md:-translate-y-1/2 z-50 flex-col"
               style={{ padding: 'clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 3rem)' }}
               aria-label="Navigation sections"
             >
-              <ul
-                className="flex flex-row md:flex-col gap-2 md:gap-6 overflow-x-auto md:overflow-visible no-scrollbar"
-                style={{ marginTop: 'clamp(5rem, 10vh, 8rem)' }}
-              >
+              <ul className="flex flex-col gap-6">
                 {TABS.map((tab) => {
                   const isActive = nextTab === tab.id;
                   return (
@@ -146,13 +142,11 @@ export default function App() {
                           padding: '0.4rem 0',
                           background: 'none',
                           border: 'none',
-                          color: isActive ? '#e8d5b0' : '#e8d5b0',
-                          transition: 'color 0.4s ease, transform 0.3s ease',
+                          color: '#e8d5b0',
+                          transition: 'transform 0.3s ease',
                           transform: isActive ? 'translateX(4px)' : 'translateX(0)',
                           whiteSpace: 'nowrap',
                         }}
-                        onMouseEnter={e => !isActive && (e.currentTarget.style.color = '#e8d5b0')}
-                        onMouseLeave={e => !isActive && (e.currentTarget.style.color = '#e8d5b0')}
                       >
                         <span
                           className="font-kanji font-black"
@@ -164,7 +158,6 @@ export default function App() {
                         >
                           {tab.kanji}
                         </span>
-
                         <span
                           style={{
                             display: 'inline-block',
@@ -175,7 +168,6 @@ export default function App() {
                             boxShadow: isActive ? '0 0 8px #ff3333' : 'none',
                           }}
                         />
-
                         <span
                           className="font-noble"
                           style={{
@@ -193,14 +185,82 @@ export default function App() {
               </ul>
             </nav>
 
+            {/* ── Navigation mobile : barre fixée en bas ──────────── */}
+            <nav
+              className="md:hidden fixed bottom-0 left-0 w-full z-50"
+              style={{
+                background: 'rgba(10,0,0,0.92)',
+                backdropFilter: 'blur(12px)',
+                borderTop: '1px solid rgba(139,0,0,0.4)',
+                padding: '0.5rem 0',
+              }}
+              aria-label="Navigation sections mobile"
+            >
+              <ul className="flex flex-row justify-around items-center">
+                {TABS.map((tab) => {
+                  const isActive = nextTab === tab.id;
+                  return (
+                    <li key={tab.id}>
+                      <button
+                        onClick={() => handleTabChange(tab.id)}
+                        aria-current={isActive ? 'page' : undefined}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          gap: '0.2rem',
+                          padding: '0.4rem 0.6rem',
+                          background: 'none',
+                          border: 'none',
+                          color: '#e8d5b0',
+                        }}
+                      >
+                        <span
+                          className="font-kanji font-black"
+                          style={{
+                            fontSize: '1.1rem',
+                            color: isActive ? '#cc0000' : 'rgba(255,50,50,0.6)',
+                            transition: 'color 0.3s ease',
+                          }}
+                        >
+                          {tab.kanji}
+                        </span>
+                        <span
+                          className="font-noble"
+                          style={{
+                            fontSize: '0.45rem',
+                            letterSpacing: '0.15em',
+                            textTransform: 'uppercase',
+                            color: isActive ? '#e8d5b0' : 'rgba(232,213,176,0.4)',
+                            transition: 'color 0.3s ease',
+                          }}
+                        >
+                          {tab.label}
+                        </span>
+                        {isActive && (
+                          <span style={{
+                            display: 'block',
+                            width: '20px',
+                            height: '1px',
+                            background: '#cc0000',
+                            boxShadow: '0 0 6px #ff3333',
+                          }} />
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
             {/* Contenu de la page active */}
             <main
-              className="flex-1 relative z-20"
+              className="relative z-20"
               style={{
-                paddingLeft: 'clamp(1.5rem, 18vw, 20rem)',
-                paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
-                paddingTop: 'clamp(6rem, 12vh, 10rem)',
-                paddingBottom: 'clamp(3rem, 6vw, 6rem)',
+                paddingLeft:   'clamp(1rem, 18vw, 20rem)',
+                paddingRight:  'clamp(1rem, 4vw, 5rem)',
+                paddingTop:    'clamp(4.5rem, 10vh, 10rem)',
+                paddingBottom: 'clamp(5rem, 8vw, 6rem)',
               }}
             >
               <PageTransition isTransitioning={isTransitioning}>

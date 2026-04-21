@@ -41,7 +41,7 @@ export const Psychology = () => (
       <StutterText
         as="div"
         intensity="high"
-        className="font-noble font-black"
+        className="font-noble font-black mobile-no-offset"
         style={{
           fontSize:      'clamp(3.5rem, 11vw, 12rem)',
           lineHeight:    0.88,
@@ -74,11 +74,8 @@ export const Psychology = () => (
     {/* ── TRAIT 01 — L'Hyper-Interprétation ──────────────────────── */}
     <div style={{ marginBottom: 'clamp(4rem, 7vw, 6rem)' }}>
       <div
+        className="grid-responsive-num"
         style={{
-          display:              'grid',
-          gridTemplateColumns:  '100px 1fr',
-          gap:                  'clamp(1.5rem, 3vw, 3rem)',
-          alignItems:           'start',
           transform:            'rotate(-0.3deg)',
         }}
       >
@@ -172,7 +169,7 @@ export const Psychology = () => (
         IL MENT.
       </StutterText>
       <div
-        className="font-noble font-black"
+        className="font-noble font-black mobile-no-offset"
         style={{
           fontSize:      'clamp(1rem, 3vw, 3rem)',
           lineHeight:    1,
@@ -189,11 +186,8 @@ export const Psychology = () => (
     {/* ── TRAIT 02 — Kurotsuchi ──────────────────────────────────── */}
     <div style={{ marginBottom: 'clamp(4rem, 7vw, 6rem)' }}>
       <div
+        className="grid-responsive-num mobile-no-offset"
         style={{
-          display:              'grid',
-          gridTemplateColumns:  '100px 1fr',
-          gap:                  'clamp(1.5rem, 3vw, 3rem)',
-          alignItems:           'start',
           marginLeft:           'clamp(0rem, 3vw, 4rem)',
           transform:            'rotate(0.4deg)',
         }}
@@ -274,11 +268,8 @@ export const Psychology = () => (
     {/* ── TRAIT 03 — Rapport à l'autre ──────────────────────────── */}
     <div>
       <div
+        className="grid-responsive-num"
         style={{
-          display:              'grid',
-          gridTemplateColumns:  '100px 1fr',
-          gap:                  'clamp(1.5rem, 3vw, 3rem)',
-          alignItems:           'start',
           transform:            'rotate(-0.2deg)',
         }}
       >

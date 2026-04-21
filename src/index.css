@@ -348,3 +348,66 @@ body {
 .rotate-chaos-1 { transform: rotate(-1.5deg); }
 .rotate-chaos-2 { transform: rotate(0.8deg); }
 .rotate-chaos-3 { transform: rotate(-0.5deg); }
+
+/* ─── RESPONSIVE GRIDS ─────────────────────────────────────── */
+
+/* Grid 2 colonnes → 1 colonne sur mobile */
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: start;
+}
+
+/* Grid asymétrique 1fr 1.4fr → 1 colonne sur mobile */
+.grid-responsive-asym {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* Grid numéro + contenu → 1 colonne sur mobile */
+.grid-responsive-num {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .grid-responsive-2 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .grid-responsive-asym {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .grid-responsive-num {
+    grid-template-columns: 60px 1fr;
+    gap: 0.8rem;
+  }
+  /* Annuler les offsets/marges mobiles */
+  .mobile-no-offset {
+    margin-left: 0 !important;
+  }
+  /* Réduire les rotations sur mobile pour éviter les débordements */
+  .rotate-chaos-1,
+  .rotate-chaos-2,
+  .rotate-chaos-3 {
+    transform: none;
+  }
+  /* Padding bottom pour la nav mobile fixée en bas */
+  main {
+    padding-bottom: 5.5rem !important;
+  }
+}
+
+/* Sur mobile : le padding-left du main ignore la nav desktop */
+@media (max-width: 767px) {
+  main {
+    padding-left: clamp(1rem, 5vw, 2rem) !important;
+    padding-right: clamp(1rem, 5vw, 2rem) !important;
+  }
+}

@@ -103,13 +103,10 @@ export const GeneralInfo = () => (
 
     {/* ── CORPS — Deux colonnes asymétriques ────────────────────── */}
     <div
+      className="grid-responsive-asym"
       style={{
-        display:              'grid',
-        gridTemplateColumns:  '1fr 1.4fr',
-        gap:                  'clamp(2rem, 4vw, 4rem)',
-        alignItems:           'start',
-        position:             'relative',
-        zIndex:               1,
+        position: 'relative',
+        zIndex:   1,
       }}
     >
       {/* Colonne gauche — Données froides */}
